@@ -68,6 +68,13 @@ const App = () => {
               <option value="4">4</option>
             </select>
           </div>
+          {/* active page ends */}
+          {/* news items */}
+          <div>
+            <h2 className="mx-4 my-3 text-4xl w-1/3 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
+              News List
+            </h2>
+          </div>
         </div>
       </div>
     </div>
