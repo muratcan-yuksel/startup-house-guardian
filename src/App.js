@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import "./App.css";
+import NewsList from "./components/NewsList";
 
 const App = () => {
   return (
@@ -8,7 +9,7 @@ const App = () => {
       <Header />
       {/* wrapper */}
       <div className="flex justify-center">
-        <div className="flex flex-col w-full  lg:w-7/12">
+        <div className="flex flex-col w-full  lg:w-11/12">
           {/* item */}
           <div className="flex flex-col md:flex-row mx-4">
             <div className="flex flex-col md:w-6/12 w-full mb-4 mr-0 md:mr-2">
@@ -69,11 +70,12 @@ const App = () => {
             </select>
           </div>
           {/* active page ends */}
-          {/* news items */}
           <div>
-            <h2 className="mx-4 my-3 text-4xl w-1/3 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
-              News List
-            </h2>
+            {/* news list */}
+            <NewsList />
+            {/* news list ends */}
+            {/* read later part */}
+            <div className="readLaterDiv flex flex-col md:w-6/12 w-full mb-4 mr-0 md:ml-2"></div>
           </div>
         </div>
       </div>
