@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import "./App.css";
 import NewsList from "./components/NewsList";
+import ReadLater from "./components/ReadLater";
 
 const App = () => {
   return (
@@ -70,12 +71,12 @@ const App = () => {
             </select>
           </div>
           {/* active page ends */}
-          <div>
+          <div className="flex flex-col lg:flex-row">
             {/* news list */}
             <NewsList />
             {/* news list ends */}
             {/* read later part */}
-            <div className="readLaterDiv flex flex-col md:w-6/12 w-full mb-4 mr-0 md:ml-2"></div>
+            <ReadLater />
           </div>
         </div>
       </div>
