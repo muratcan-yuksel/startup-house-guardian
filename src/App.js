@@ -71,12 +71,23 @@ const App = () => {
             </select>
           </div>
           {/* active page ends */}
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-col md:flex-row">
             {/* news list */}
-            <NewsList />
+
+            <div className="flex flex-col md:w-6/12 w-full mb-4 mr-0 md:mr-2">
+              <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
+                News List
+              </h2>
+              <NewsList />
+            </div>
             {/* news list ends */}
             {/* read later part */}
-            <ReadLater />
+            <div className="readLaterDiv flex flex-col md:w-6/12 w-full mb-4 mr-0 md:ml-2">
+              <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
+                Read Later
+              </h2>
+              <ReadLater />
+            </div>
           </div>
         </div>
       </div>

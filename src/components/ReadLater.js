@@ -2,13 +2,18 @@ import React from "react";
 
 const ReadLater = () => {
   return (
-    <div className="readLaterDiv flex flex-col md:w-6/12 w-full mb-4 mr-0 md:ml-2">
-      <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
-        Read Later
-      </h2>
+    <div className="">
       <ul className="list-disc list-inside text-gray-500 p-5">
         <li className="text-2xl text-[#606c76]">Sample news title</li>
       </ul>
+      <div className="flex flex-row justify-start">
+        <button className=" text-[#9b4dca] hover:text-[#606c76] ml-5 px-7 py-2">
+          <span className="text-xs font-bold">FULL ARTICLE</span>
+        </button>
+        <button className="text-[#9b4dca] hover:text-[#606c76]  px-7 py-2">
+          <span className="text-xs font-bold">READ LATER</span>
+        </button>
+      </div>
     </div>
   );
 };
