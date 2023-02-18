@@ -75,7 +75,7 @@ const App = () => {
             {/* news list */}
 
             <div className="flex flex-col md:w-6/12 w-full mb-4 mr-0 md:mr-2">
-              <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
+              <h2 className="mx-4 mt-3 mb-10 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 pb-2 ">
                 News List
               </h2>
               <NewsList />
@@ -83,7 +83,7 @@ const App = () => {
             {/* news list ends */}
             {/* read later part */}
             <div className="readLaterDiv flex flex-col md:w-6/12 w-full mb-4 mr-0 md:ml-2">
-              <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 ">
+              <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 pb-2">
                 Read Later
               </h2>
               <ReadLater />
