@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import NewsList from "./components/NewsList";
 import ReadLater from "./components/ReadLater";
+import axios from "axios";
 
 const App = () => {
+  const [page, setPage] = useState(1);
+  const [section, setSection] = useState("All");
+  const urlAll = `https://content.guardianapis.com/search?from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
+  const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
+  const getItems = async () => {
+    if (section === "All") {
+      const res = await axios.get(urlAll);
+      console.log(res.data.response.results);
+    } else if (section !== "All") {
+      const res = await axios.get(urlSection);
+      console.log(res.data.response.results);
+    }
+  };
+
+  const changePage = (e) => {
+    setPage(e.target.value);
+  };
+
+  useEffect(() => {
+    getItems();
+  }, [page, section]);
+
   return (
     <div>
       <Header />
@@ -39,6 +62,7 @@ const App = () => {
               <select
                 id="sectionSelect"
                 className="bg-[#ffffff] border rounded-md h-9 font-light px-4"
+                onChange={(e) => setSection(e.target.value)}
               >
                 <option value="all">All</option>
                 <option value="books">Books</option>
@@ -60,9 +84,7 @@ const App = () => {
             <select
               id="activePageSelect"
               className="bg-[#ffffff] border rounded-md h-9 font-light px-4"
-              onChange={(e) => {
-                console.log(e.target.value);
-              }}
+              onChange={changePage}
             >
               <option value="1">1</option>
               <option value="2">2</option>
