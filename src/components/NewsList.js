@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewsList = () => {
+const NewsList = ({ id, title, section, date, url }) => {
   return (
     <div className="">
       {/* box */}
@@ -12,7 +12,7 @@ const NewsList = () => {
         }}
       >
         {" "}
-        <h3 className="text-2xl text-[#606c76]">Sample news title</h3>
+        <h3 className="text-2xl text-[#606c76]">{title}</h3>
         <ul className="list-disc list-inside text-gray-500 p-5">
           <li className="text-sm font-bold pb-3">
             Section Name: <span className="font-normal">Sample Section</span>{" "}

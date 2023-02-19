@@ -7,19 +7,25 @@ import axios from "axios";
 
 const App = () => {
   const [page, setPage] = useState(1);
-  const [section, setSection] = useState("All");
+
+  const [section, setSection] = useState("all");
   const [pages, setPages] = useState(1);
   const urlAll = `https://content.guardianapis.com/search?from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
+  const [items, setItems] = useState([]);
+
   const getItems = async () => {
     if (section === "all") {
       const res = await axios.get(urlAll);
       console.log(res.data.response.results);
+      setItems(res.data.response.results);
       console.log(res.data.response.pages);
       setPages(res.data.response.pages);
-    } else if (section !== "All") {
+    } else if (section !== "all") {
+      console.log(page);
       const res = await axios.get(urlSection);
       console.log(res.data.response.results);
+      setItems(res.data.response.results);
       console.log(res.data.response.pages);
       setPages(res.data.response.pages);
     }
@@ -27,10 +33,21 @@ const App = () => {
 
   const changePage = (e) => {
     setPage(e.target.value);
+    console.log(page);
+    console.log(e.target.value);
+  };
+
+  const changeSection = (e) => {
+    // if (e.target.value !== "all") {
+    // }
+    setPage(1);
+    setPages(1);
+    setSection(e.target.value);
   };
 
   useEffect(() => {
     getItems();
+    console.log(page);
   }, [page, section]);
 
   return (
@@ -67,13 +84,13 @@ const App = () => {
               <select
                 id="sectionSelect"
                 className="bg-[#ffffff] border rounded-md h-9 font-light px-4"
-                onChange={(e) => setSection(e.target.value.toLowerCase())}
+                onChange={changeSection}
               >
                 <option value="all">All</option>
                 <option value="books">Books</option>
                 <option value="business">Business</option>
                 <option value="culture">Culture</option>
-                <option value="Sport">Sport</option>
+                <option value="sport">Sport</option>
               </select>
             </div>
           </div>
@@ -109,7 +126,19 @@ const App = () => {
               <h2 className="mx-4 mt-3 mb-10 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 pb-2 ">
                 News List
               </h2>
-              <NewsList />
+              {items &&
+                items.map((item) => (
+                  <NewsList
+                    key={item.id}
+                    id={item.id}
+                    title={item.webTitle}
+                    section={item.sectionName}
+                    date={item.webPublicationDate}
+                    url={item.webUrl}
+                  />
+                ))}
+
+              {/* <NewsList /> */}
             </div>
             {/* news list ends */}
             {/* read later part */}
