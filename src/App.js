@@ -8,15 +8,20 @@ import axios from "axios";
 const App = () => {
   const [page, setPage] = useState(1);
   const [section, setSection] = useState("All");
+  const [pages, setPages] = useState(1);
   const urlAll = `https://content.guardianapis.com/search?from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const getItems = async () => {
-    if (section === "All") {
+    if (section === "all") {
       const res = await axios.get(urlAll);
       console.log(res.data.response.results);
+      console.log(res.data.response.pages);
+      setPages(res.data.response.pages);
     } else if (section !== "All") {
       const res = await axios.get(urlSection);
       console.log(res.data.response.results);
+      console.log(res.data.response.pages);
+      setPages(res.data.response.pages);
     }
   };
 
@@ -62,7 +67,7 @@ const App = () => {
               <select
                 id="sectionSelect"
                 className="bg-[#ffffff] border rounded-md h-9 font-light px-4"
-                onChange={(e) => setSection(e.target.value)}
+                onChange={(e) => setSection(e.target.value.toLowerCase())}
               >
                 <option value="all">All</option>
                 <option value="books">Books</option>
@@ -86,10 +91,14 @@ const App = () => {
               className="bg-[#ffffff] border rounded-md h-9 font-light px-4"
               onChange={changePage}
             >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              {/* {pages &&
+                pages.lengthmap((page) => <option value={page}>{page}</option>)} */}
+              {pages &&
+                Array.from({ length: pages }, (_, i) => i + 1).map((page) => (
+                  <option key={page} value={page}>
+                    {page}
+                  </option>
+                ))}
             </select>
           </div>
           {/* active page ends */}
