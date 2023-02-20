@@ -12,7 +12,7 @@ const ReadLater = ({ id, title, section, date, url }) => {
   const removeItem = async () => {
     try {
       const res = await axios.delete(
-        `https://startup-house-backend.onrender.com/${id}`
+        `https://startup-house-backend.onrender.com/api/${id}`
       );
       console.log(res);
       incrementContext();

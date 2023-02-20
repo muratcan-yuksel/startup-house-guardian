@@ -12,7 +12,7 @@ const NewsList = ({ id, title, section, date, url }) => {
   const fireReadLater = async () => {
     try {
       const res = await axios.post(
-        "https://startup-house-backend.onrender.com",
+        "https://startup-house-backend.onrender.com/api",
         {
           // id: id,
           title: title,
