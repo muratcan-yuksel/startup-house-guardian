@@ -7,11 +7,18 @@ import axios from "axios";
 import { DataContext } from "./context";
 
 const App = () => {
+  //dates
+  const today = new Date(); // Get today's date
+  const thirtyDaysAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000); // Subtract 30 days
+
+  // Format the dates as strings in the format YYYY-MM-DD
+  const todayFormatted = today.toISOString().slice(0, 10);
+  const thirtyDaysAgoFormatted = thirtyDaysAgo.toISOString().slice(0, 10);
   const [page, setPage] = useState(1);
   const [section, setSection] = useState("all");
   const [pages, setPages] = useState(1);
-  const urlAll = `https://content.guardianapis.com/search?from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
-  const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
+  const urlAll = `https://content.guardianapis.com/search?from-date=${thirtyDaysAgoFormatted}&to-date=${todayFormatted}&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
+  const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=${thirtyDaysAgoFormatted}&to-date=${todayFormatted}&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const [items, setItems] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [savedItems, setSavedItems] = useState([]);
