@@ -19,7 +19,4 @@ Then I needed to filter the items, both the ones coming from the api and the sav
 
 For backend, I fired up an Express server with MVC (model-view-controller) pattern. Why? Maybe it was not necessary for such a small application, but I find it easier to work with. I used Mongoose to connect to the database, and I used dotenv to hide my database connection string.
 
-# Things to do
-
-date conversion 2023-02-19T08:00:02Z
-Display list of news from last 30 days
+There was this interesting problem: Now I save the articles to the database by clicking the read later button, which sends an API request to the endpoint my my backend. As soon as that item reaches the database, it should be shown on the saved articles component. In order to show it in real time, I used React's in-built context API to let one component send the message to another that the context was changed, so that the component should re-render. I used useEffect for rerender, and for the context, I just incremented it on each save or delete. This way, whenever the item was saved or deleted, the relevant component rerenders and we see the data flow seamlessly, without the need of a refresh.
