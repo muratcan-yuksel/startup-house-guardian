@@ -13,6 +13,22 @@ const App = () => {
   const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const [items, setItems] = useState([]);
   const [filterValue, setFilterValue] = useState("");
+  const [savedItems, setSavedItems] = useState([]);
+
+  // const [items, setItems] = useState([]);
+  const getSavedItems = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001");
+      console.log(res.data.data);
+      setSavedItems(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect(() => {
+  //   getItems();
+  // }, []);
 
   const getItems = async () => {
     if (section === "all") {
@@ -49,8 +65,13 @@ const App = () => {
     return item.webTitle.toLowerCase().includes(filterValue.toLowerCase());
   });
 
+  const filteredSavedItems = savedItems.filter((item) => {
+    return item.title.toLowerCase().includes(filterValue.toLowerCase());
+  });
+
   useEffect(() => {
     getItems();
+    getSavedItems();
     console.log(page);
   }, [page, section]);
 
@@ -151,7 +172,18 @@ const App = () => {
               <h2 className="mx-4 my-3 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 pb-2">
                 Read Later
               </h2>
-              <ReadLater />
+              {filteredSavedItems &&
+                filteredSavedItems.map((item) => (
+                  <ReadLater
+                    key={item._id}
+                    id={item._id}
+                    title={item.title}
+                    section={item.section}
+                    date={item.date}
+                    url={item.url}
+                  />
+                ))}
+              {/* <ReadLater /> */}
             </div>
           </div>
         </div>

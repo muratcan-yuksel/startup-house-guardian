@@ -1,6 +1,22 @@
 import React from "react";
+import axios from "axios";
 
 const NewsList = ({ id, title, section, date, url }) => {
+  const fireReadLater = async () => {
+    try {
+      const res = await axios.post("http://localhost:3001", {
+        // id: id,
+        title: title,
+        section: section,
+        date: date,
+        url: url,
+      });
+      console.log("Post request was successful!");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="">
       {/* box */}
@@ -28,7 +44,10 @@ const NewsList = ({ id, title, section, date, url }) => {
               <span className="text-xs font-bold">FULL ARTICLE</span>
             </a>
           </button>
-          <button className="text-[#9b4dca] border hover:text-[#606c76] border-[#9b4dca] hover:border-[#606c76] rounded-md px-7 py-2">
+          <button
+            onClick={() => fireReadLater()}
+            className="text-[#9b4dca] border hover:text-[#606c76] border-[#9b4dca] hover:border-[#606c76] rounded-md px-7 py-2"
+          >
             <span className="text-xs font-bold">READ LATER</span>
           </button>
         </div>
