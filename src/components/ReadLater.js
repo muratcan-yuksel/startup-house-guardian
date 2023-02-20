@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { DataContext } from "../context";
 
 const ReadLater = ({ id, title, section, date, url }) => {
+  const [context, setContext] = useContext(DataContext);
+
+  const incrementContext = () => {
+    setContext(Number(context) + 1);
+  };
+
   const removeItem = async () => {
     try {
       const res = await axios.delete(`http://localhost:3001/${id}`);
       console.log(res);
+      incrementContext();
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(id);
+
   return (
     <div className="">
       <ul className="list-disc list-inside text-gray-500 px-5 py-1">

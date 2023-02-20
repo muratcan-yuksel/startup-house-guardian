@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import NewsList from "./components/NewsList";
 import ReadLater from "./components/ReadLater";
 import axios from "axios";
+import { DataContext } from "./context";
 
 const App = () => {
   const [page, setPage] = useState(1);
@@ -14,6 +15,7 @@ const App = () => {
   const [items, setItems] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [savedItems, setSavedItems] = useState([]);
+  const [context, setContext] = useContext(DataContext);
 
   // const [items, setItems] = useState([]);
   const getSavedItems = async () => {
@@ -25,10 +27,6 @@ const App = () => {
       console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   getItems();
-  // }, []);
 
   const getItems = async () => {
     if (section === "all") {
@@ -73,7 +71,7 @@ const App = () => {
     getItems();
     getSavedItems();
     console.log(page);
-  }, [page, section]);
+  }, [page, section, context]);
 
   return (
     <div>

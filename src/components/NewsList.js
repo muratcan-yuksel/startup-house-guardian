@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
+import { DataContext } from "../context";
 
 const NewsList = ({ id, title, section, date, url }) => {
+  const [context, setContext] = useContext(DataContext);
+
+  const incrementContext = () => {
+    setContext(Number(context) + 1);
+  };
+
   const fireReadLater = async () => {
     try {
       const res = await axios.post("http://localhost:3001", {
@@ -12,6 +19,7 @@ const NewsList = ({ id, title, section, date, url }) => {
         url: url,
       });
       console.log("Post request was successful!");
+      incrementContext();
     } catch (error) {
       console.log(error);
     }
