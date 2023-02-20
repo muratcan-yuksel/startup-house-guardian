@@ -25,6 +25,19 @@ const NewsList = ({ id, title, section, date, url }) => {
     }
   };
 
+  const dateOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+    timeZone: "UTC",
+  };
+
+  const formattedDate = new Date(date).toLocaleString("en-US", dateOptions);
+
   return (
     <div className="">
       {/* box */}
@@ -42,7 +55,8 @@ const NewsList = ({ id, title, section, date, url }) => {
             Section Name: <span className="font-normal">{section}</span>{" "}
           </li>
           <li className="text-sm font-bold pb-3">
-            Publication Date: <span className="font-normal">{date} </span>
+            Publication Date:{" "}
+            <span className="font-normal">{formattedDate} </span>
           </li>
         </ul>
         {/* buttons */}

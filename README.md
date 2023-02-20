@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+live demo =>
+backend source code=>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# How did I build this app?
 
-## Available Scripts
+For styling, I used Tailwind CSS, nothing too complicated there.
 
-In the project directory, you can run:
+For the frontend I used React, and for the backend I used Node.js with Express.
 
-### `npm start`
+For the database I used MongoDB with Mongoose.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Process
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Now, I wanted to flex my full-stack skills so instead of local storage or something else, the saved articles should've been stored in a database. But I didn't start coding the backend before I had many things ready.
 
-### `npm test`
+First off, I needed to get the data from The Guardian API, axios to the rescue there. The API itself helps a lot with filtering too so I can get culture, sports, business, whatever. On each page change, articles on that page should be shown. But there's a problem there. For instance, all articles are like more than 250 pages but say, books section has only 8 pages. If I wanted to change from all to books when I was at page, say 25, it would throw an error, because the books section doesn't have that page number. To solve it, I set the page number to 1 at each section change, which made the app even more user-friendly.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Then I needed to filter the items, both the ones coming from the api and the saved ones, which will come form the database soon. I wrote 2 distinct functions to make the code more readable, and sent the relevant info via props.
 
-### `npm run build`
+For backend, I fired up an Express server with MVC (model-view-controller) pattern. Why? Maybe it was not necessary for such a small application, but I find it easier to work with. I used Mongoose to connect to the database, and I used dotenv to hide my database connection string.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Things to do
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+date conversion 2023-02-19T08:00:02Z
+Display list of news from last 30 days
