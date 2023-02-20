@@ -7,12 +7,12 @@ import axios from "axios";
 
 const App = () => {
   const [page, setPage] = useState(1);
-
   const [section, setSection] = useState("all");
   const [pages, setPages] = useState(1);
   const urlAll = `https://content.guardianapis.com/search?from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=2023-02-06&to-date=2023-02-22&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
   const [items, setItems] = useState([]);
+  const [filterValue, setFilterValue] = useState("");
 
   const getItems = async () => {
     if (section === "all") {
@@ -45,6 +45,10 @@ const App = () => {
     setSection(e.target.value);
   };
 
+  const filteredData = items.filter((item) => {
+    return item.webTitle.toLowerCase().includes(filterValue.toLowerCase());
+  });
+
   useEffect(() => {
     getItems();
     console.log(page);
@@ -70,6 +74,8 @@ const App = () => {
                 placeholder="News content search"
                 id="newsContentSearch"
                 className="border rounded-md h-9 p-4 font-light"
+                value={filterValue}
+                onChange={(e) => setFilterValue(e.target.value)}
               />
             </div>
             {/* item */}
@@ -108,8 +114,6 @@ const App = () => {
               className="bg-[#ffffff] border rounded-md h-9 font-light px-4"
               onChange={changePage}
             >
-              {/* {pages &&
-                pages.lengthmap((page) => <option value={page}>{page}</option>)} */}
               {pages &&
                 Array.from({ length: pages }, (_, i) => i + 1).map((page) => (
                   <option key={page} value={page}>
@@ -126,8 +130,9 @@ const App = () => {
               <h2 className="mx-4 mt-3 mb-10 text-4xl w-7/12 border-b border-[#606c76] text-[#606c76] font-light leading-10 pb-2 ">
                 News List
               </h2>
-              {items &&
-                items.map((item) => (
+
+              {filteredData &&
+                filteredData.map((item) => (
                   <NewsList
                     key={item.id}
                     id={item.id}
