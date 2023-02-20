@@ -11,13 +11,16 @@ const NewsList = ({ id, title, section, date, url }) => {
 
   const fireReadLater = async () => {
     try {
-      const res = await axios.post("http://localhost:3001", {
-        // id: id,
-        title: title,
-        section: section,
-        date: date,
-        url: url,
-      });
+      const res = await axios.post(
+        "https://startup-house-backend.onrender.com",
+        {
+          // id: id,
+          title: title,
+          section: section,
+          date: date,
+          url: url,
+        }
+      );
       console.log("Post request was successful!");
       incrementContext();
     } catch (error) {

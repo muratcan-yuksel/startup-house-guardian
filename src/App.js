@@ -27,7 +27,7 @@ const App = () => {
   // const [items, setItems] = useState([]);
   const getSavedItems = async () => {
     try {
-      const res = await axios.get("http://localhost:3001");
+      const res = await axios.get("https://startup-house-backend.onrender.com");
       console.log(res.data.data);
       setSavedItems(res.data.data);
     } catch (error) {

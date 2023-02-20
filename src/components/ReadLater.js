@@ -11,7 +11,9 @@ const ReadLater = ({ id, title, section, date, url }) => {
 
   const removeItem = async () => {
     try {
-      const res = await axios.delete(`http://localhost:3001/${id}`);
+      const res = await axios.delete(
+        `https://startup-house-backend.onrender.com/${id}`
+      );
       console.log(res);
       incrementContext();
     } catch (error) {
