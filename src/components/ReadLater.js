@@ -28,13 +28,13 @@ const ReadLater = ({ id, title, section, date, url }) => {
       </ul>
       <div className="flex flex-row justify-start">
         <a href={url} target="_blank" rel="noreferrer">
-          <button className=" text-[#9b4dca] hover:text-[#606c76] ml-5 px-7 ">
+          <button className=" text-[#ca4d96] hover:text-[#606c76] ml-5 px-7 ">
             <span className="text-xs font-bold">Read</span>
           </button>
         </a>
         <button
           onClick={() => removeItem()}
-          className="text-[#9b4dca] hover:text-[#606c76]  px-7 "
+          className="text-[#ca4d96] hover:text-[#606c76]  px-7 "
         >
           <span className="text-xs font-bold">Remove</span>
         </button>

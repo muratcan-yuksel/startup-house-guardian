@@ -17,8 +17,8 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [section, setSection] = useState("all");
   const [pages, setPages] = useState(1);
-  const urlAll = `https://content.guardianapis.com/search?from-date=${thirtyDaysAgoFormatted}&to-date=${todayFormatted}&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
-  const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=${thirtyDaysAgoFormatted}&to-date=${todayFormatted}&order-by=newest&page=${page}&page-size=10&api-key=501891ca-3ae4-4905-b64f-e2984c6e2251`;
+  const urlAll = `https://content.guardianapis.com/search?from-date=${thirtyDaysAgoFormatted}&to-date=${todayFormatted}&order-by=newest&page=${page}&page-size=10&api-key=${process.env.REACT_APP_API_KEY}`;
+  const urlSection = `https://content.guardianapis.com/search?section=${section}&from-date=${thirtyDaysAgoFormatted}&to-date=${todayFormatted}&order-by=newest&page=${page}&page-size=10&api-key=${process.env.REACT_APP_API_KEY}`;
   const [items, setItems] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [savedItems, setSavedItems] = useState([]);

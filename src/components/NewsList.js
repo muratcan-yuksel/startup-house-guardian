@@ -64,14 +64,14 @@ const NewsList = ({ id, title, section, date, url }) => {
         </ul>
         {/* buttons */}
         <div className="flex flex-row justify-between">
-          <button className=" text-white bg-[#9b4dca] hover:bg-[#606c76] border border-[#9b4dca] rounded-md px-7 py-2">
+          <button className=" text-white bg-[#ca4d96] hover:bg-[#606c76] border border-[#ca4d96] rounded-md px-7 py-2">
             <a href={url} target="_blank" rel="noreferrer">
               <span className="text-xs font-bold">FULL ARTICLE</span>
             </a>
           </button>
           <button
             onClick={() => fireReadLater()}
-            className="text-[#9b4dca] border hover:text-[#606c76] border-[#9b4dca] hover:border-[#606c76] rounded-md px-7 py-2"
+            className="text-[#ca4d96] border hover:text-[#606c76] border-[#ca4d96] hover:border-[#606c76] rounded-md px-7 py-2"
           >
             <span className="text-xs font-bold">READ LATER</span>
           </button>
